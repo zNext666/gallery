@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Deploy Local Nginx') {
             steps {
-                sh 'rsync -av --delete ${env.WORKSPACE}/build/web /usr/local/nginx/html'
+                sh 'rsync -av --delete ${env.WORKSPACE}/build/web /usr/share/nginx/html'
             }
         }
     }
