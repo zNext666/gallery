@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
@@ -42,6 +43,11 @@ pipeline {
         stage('Build Web') {
             steps {
                 sh 'flutter build web'
+            }
+        }
+        stage('Deploy Local Nginx') {
+            steps {
+                sh 'rsync -av --delete ${env.WORKSPACE}/build/web /usr/local/nginx/html'
             }
         }
     }
