@@ -45,9 +45,8 @@ pipeline {
                 sh 'flutter build web'
             }
         }
-        stage('Deploy Local Nginx') {
+        stage('Deploy') {
             steps {
-                sh 'rsync -av --delete ${env.WORKSPACE}/build/web /usr/share/nginx/html'
             }
         }
     }
