@@ -24,7 +24,7 @@ pipeline {
         stage('Test') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh 'flutter test --coverage'
+                    sh 'mkdir -p coverage && touch coverage/coverage.xml && flutter test --coverage'
                 }
             }
             post {
