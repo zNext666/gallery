@@ -48,7 +48,7 @@ pipeline {
         // }
         stage('Build Web') {
             steps {
-                sh 'flutter build web'
+                sh 'flutter build web && ls -l build/web'
             }
         }
         stage('Deploy') {
