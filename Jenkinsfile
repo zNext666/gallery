@@ -12,9 +12,15 @@ pipeline {
         //         sh 'curl -O https://raw.githubusercontent.com/eriwen/lcov-to-cobertura-xml/master/lcov_cobertura/lcov_cobertura.py'
         //     }
         // }
+        stage('Flutter Channel Check/Upgrade') {
+            steps {
+                sh 'flutter channel master'
+                sh 'flutter upgrade'
+            }
+        }
         stage('Flutter Doctor') {
             steps {
-                sh 'flutter doctor'
+                sh 'flutter doctor -v'
             }
         }
         stage('Flutter Pub Get') {
@@ -47,6 +53,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+            }
+        }
+        stage('Clean') {
+            steps {
+                sh 'flutter clean'
             }
         }
     }
