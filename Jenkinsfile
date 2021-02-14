@@ -32,5 +32,10 @@ pipeline {
                 sh "dartanalyzer --options analysis_options.yaml ."
             }
         }
+        stage('Build Web'){
+            steps {
+                sh "flutter build web"
+            }
+        }
     }
 }
