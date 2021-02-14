@@ -22,15 +22,15 @@ pipeline {
             }
         }
         stage('Test') {
-            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                steps {
+            steps {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh 'flutter test --coverage'
                 }
-                post {
-                    always {
-                        sh 'python3 lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml'
-                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
-                    }
+            }
+            post {
+                always {
+                    sh 'python3 lcov_cobertura.py coverage/lcov.info --output coverage/coverage.xml'
+                    step([$class: 'CoberturaPublisher', coberturaReportFile: 'coverage/coverage.xml'])
                 }
             }
         }
